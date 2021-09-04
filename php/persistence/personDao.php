@@ -28,8 +28,9 @@
 		}
 
 		public function update($connection,$person){
-			$sql = "update person set firstName='".$person->getFirstName()."',set lastName='".$person->getLastName()."',set email='".$person->getEmail()."' where id=".$person->getId();
-			
+			$sql = "update person set firstName='".$person->getFirstName()."', lastName='".$person->getLastName()."' , email='".$person->getEmail()."' where id='".$person->getId()."'";
+			echo $sql;
+
 			(mysqli_query($connection,$sql))?$query = true:$query = false;
 			
 			$connection->close();

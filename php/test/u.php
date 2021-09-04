@@ -7,12 +7,13 @@ include("../persistence/personDao.php");
 $con    = new Connection();
 $person = new Person();
 
-$person->setId($_GET["i"]);
-$person->setFirstName($_GET["fn"]);
-$person->setLastName($_GET["ln"]);
-$person->setEmail($_GET["em"]);
+$person->setId(1);
+$person->setFirstName("admin");
+$person->setLastName("admin");
+$person->setEmail("admin@admin.com");
 
 
+print_r($person);
 
 $dao = new PersonDao();
 
