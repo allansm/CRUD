@@ -1,7 +1,7 @@
 <?php
 	class personDao{
 		public function create($connection,$person){
-			$sql = "insert into person(firstName,lastName,email) values ('".$person-firstName>."','".$person->lastName."','".$person->email."')";
+			$sql = "insert into person(firstName,lastName,email) values ('".$person->getFirstName()."','".$person->getLastName()."','".$person->getEmail()."')";
 			(mysqli_query($connection,$sql))?$query = true:$query = false;
 			
 			$connection->close();
@@ -15,10 +15,10 @@
 			while($row = mysqli_fetch_assoc($result)){
 				$person = new Person();
 
-				$person->id = $row["id"];
-				$person->firstName = $row["firstName"];
-				$person->lastName = $row["lastName"];
-				$person->email = $row["email"];
+				$person->setId($row["id"]);
+				$person->setFirstName($row["firstName"]);
+				$person->setLastName($row["lastName"]);
+				$person->setEmail($row["email"]);
 
 				array_push($list,$person);
 			}
@@ -28,7 +28,7 @@
 		}
 
 		public function update($connection,$person){
-			$sql = "update person set firstName='".$person->firstName."',set lastName='".$person->lastname."',set email='".$person->email."' where id='".$person->id."'";
+			$sql = "update person set firstName='".$person->getFirstName()."',set lastName='".$person->getLastName()."',set email='".$person->getEmail()."' where id=".$person->getId();
 			
 			(mysqli_query($connection,$sql))?$query = true:$query = false;
 			
@@ -37,7 +37,7 @@
 		}
 
 		public function delete($connection,$person){
-			$sql = "delete from person where id=".$person->id;
+			$sql = "delete from person where id=".$person->getId();
 
 			(mysqli_query($connection,$sql))?$query = true:$query = false;
 			
