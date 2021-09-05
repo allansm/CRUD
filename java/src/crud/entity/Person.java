@@ -7,34 +7,34 @@ public class Person{
 	private String email; 
 
 	public int getId(){
-	   return this.id;
+		return this.id;
 	}
 
-	public void setId(id id){
-	     this.id = id;
+	public void setId(int id){
+		this.id = id;
 	}
 
-	public String getFirstname(){
-	   return this.firstName;
+	public String getFirstName(){
+		return this.firstName;
 	}
 
-	public void setFirstname(firstName firstName){
-	     this.firstName = firstName;
+	public void setFirstName(String firstName){
+		this.firstName = firstName;
 	}
 
-	public String getLastname(){
-	   return this.lastName;
+	public String getLastName(){
+		return this.lastName;
 	}
 
-	public void setLastname(lastName lastName){
-		    this.lastName = lastName;
+	public void setLastName(String lastName){
+		this.lastName = lastName;
 	}
 
 	public String getEmail(){
-	   return this.email;
+		return this.email;
 	}
 
-	public void setEmail(email email){
-		    this.email = email;
+	public void setEmail(String email){
+		this.email = email;
 	}
 }
