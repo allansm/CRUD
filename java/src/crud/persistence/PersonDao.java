@@ -5,6 +5,10 @@ import entity.Person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import java.util.List;
+import java.util.ArrayList;
 
 public class PersonDao{
 	private DbConnection con;
@@ -26,10 +30,38 @@ public class PersonDao{
 			
 			stmt.execute();
 			stmt.close();
+			connection.close();
 
 			return true;
 		}catch(Exception e){
 			return false;
 		}
+	}
+	
+	public List<Person> read(){
+		List<Person> list = new ArrayList<Person>();
+		try{
+			String sql = "select * from person";
+
+			Connection connection = this.con.getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				Person tmp = new Person();
+				
+				tmp.setId(rs.getInt("id"));
+				tmp.setFirstName(rs.getString("firstName"));
+				tmp.setLastName(rs.getString("lastName"));
+				tmp.setEmail(rs.getString("email"));
+				
+				list.add(tmp);
+			}
+			rs.close();
+			stmt.close();
+			connection.close();
+		}catch(Exception e){}
+
+		return list;
 	}
 }
