@@ -64,4 +64,22 @@ public class PersonDao{
 
 		return list;
 	}
+
+	public boolean delete(Person person){
+		try{
+			String sql = "delete from person where id=?";
+			Connection connection = this.con.getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+
+			stmt.setInt(1,person.getId());
+			
+			stmt.execute();
+			stmt.close();
+			connection.close();
+
+			return true; 
+		}catch(Exception e){	
+			return false;
+		}
+	}
 }

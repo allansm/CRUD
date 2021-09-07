@@ -40,10 +40,20 @@ public class Test{
 		}
 	}
 
+	public void delete(){
+		Person toDelete = new PersonDao().read().get(0);
+		if(new PersonDao().delete(toDelete)){
+			System.out.println("person with id:"+toDelete.getId()+" and email:"+toDelete.getEmail()+" deleted");	
+		}else{
+			System.out.println("error!!");
+		}
+	}
+
 	public static void main(String[]args){
 		new Test().connect();
 		new Test().create();
 		System.out.println("");
 		new Test().read();
+		new Test().delete();
 	}
 }
