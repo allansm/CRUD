@@ -40,6 +40,26 @@ public class Test{
 		}
 	}
 
+	public void update(){
+		Person toUpdate = new PersonDao().read().get(0);
+
+		toUpdate.setFirstName("admin");
+		toUpdate.setLastName("admin");
+		toUpdate.setEmail("admin@admin");
+
+		if(new PersonDao().update(toUpdate)){
+			System.out.println("updated data");
+			System.out.println("id:"+toUpdate.getId());
+			System.out.println("first name:"+toUpdate.getFirstName());
+			System.out.println("last name:"+toUpdate.getLastName());
+			System.out.println("email:"+toUpdate.getEmail());
+			System.out.println("");
+	
+		}else{
+			System.out.println("cant update");
+		}
+	}
+
 	public void delete(){
 		Person toDelete = new PersonDao().read().get(0);
 		if(new PersonDao().delete(toDelete)){
@@ -50,10 +70,24 @@ public class Test{
 	}
 
 	public static void main(String[]args){
+		System.out.println("");	
+		System.out.println("connect:");
 		new Test().connect();
+		
+		System.out.println("");	
+		System.out.println("create:");
 		new Test().create();
-		System.out.println("");
+		
+		System.out.println("");	
+		System.out.println("read:");
 		new Test().read();
+		
+		System.out.println("");	
+		System.out.println("update:");
+		new Test().update();
+		
+		System.out.println("");	
+		System.out.println("delete:");
 		new Test().delete();
 	}
 }

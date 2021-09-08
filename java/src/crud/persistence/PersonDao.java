@@ -64,7 +64,27 @@ public class PersonDao{
 
 		return list;
 	}
+	public boolean update(Person person){
+		try{
+			String sql = "update person set firstName=?,lastName=?,email=? where id=?";
+			Connection connection = this.con.getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setString(1,person.getFirstName());
+			stmt.setString(2,person.getLastName());
+			stmt.setString(3,person.getEmail());
 
+			stmt.setInt(4,person.getId());
+
+			stmt.execute();
+			stmt.close();
+			connection.close();
+
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
 	public boolean delete(Person person){
 		try{
 			String sql = "delete from person where id=?";
