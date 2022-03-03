@@ -42,3 +42,23 @@ class PersonDao:
             list.append(person)
         
         return list
+
+    def update(self,connection,person):
+        stmt = connection.cursor()
+
+        sql = "UPDATE person SET firstName = %s, lastName = %s, email = %s WHERE id = %s"
+        
+        data = (
+            person.getFirstName(),
+            person.getLastName(),
+            person.getEmail(),
+            person.getId()
+        )
+
+        stmt.execute(sql,data)
+        
+        connection.commit()
+
+        stmt.close()
+        connection.close()
+

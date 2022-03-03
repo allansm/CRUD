@@ -4,6 +4,7 @@ def connection():
     connection = PythonCRUD().getConnection();
 
     print("connected.")
+    
     connection.close()
 
 def create():
@@ -38,6 +39,26 @@ def read():
         print("last name:"+n.getLastName())
         print("email:"+n.getEmail()+"\n")
 
+def update():
+    from connection.pythoncrud import PythonCRUD
+    from persistence.persondao import PersonDao
+    
+    dao = PersonDao()
+    
+    before = dao.read(PythonCRUD().getConnection())[0]
+    first = dao.read(PythonCRUD().getConnection())[0]
+
+    first.setFirstName("ROOT")
+    first.setLastName("")
+    first.setEmail("root@root.com")
+
+    dao.update(PythonCRUD().getConnection(),first)
+    
+    print("first name:"+before.getFirstName()+" >> "+first.getFirstName())
+    print("last name:"+before.getLastName()+" >> "+first.getLastName())
+    print("email:"+before.getEmail()+" >> "+first.getEmail()+"\n")
+
 connection()
 create()
 read()
+update()
