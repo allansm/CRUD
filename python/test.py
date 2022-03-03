@@ -58,7 +58,25 @@ def update():
     print("last name:"+before.getLastName()+" >> "+first.getLastName())
     print("email:"+before.getEmail()+" >> "+first.getEmail()+"\n")
 
-connection()
+def delete():
+    from connection.pythoncrud import PythonCRUD
+    from persistence.persondao import PersonDao
+
+    dao = PersonDao()
+    list = dao.read(PythonCRUD().getConnection())
+
+    for person in list:
+        dao.delete(PythonCRUD().getConnection(),person)
+        print("id:"+str(person.getId())+"\nfirst name:"+person.getFirstName()+"\ndeleted\n")
+
+print("create test:")
 create()
+print("")
+print("read test:")
 read()
+print("")
+print("update test:")
 update()
+print("")
+print("delete test:")
+delete()

@@ -61,4 +61,17 @@ class PersonDao:
 
         stmt.close()
         connection.close()
+    
+    def delete(self,connection,person):
+        stmt = connection.cursor()
+
+        sql = "DELETE FROM person WHERE id = %s"
+
+        data = (person.getId(),)
+
+        stmt.execute(sql,data)
+        connection.commit()
+
+        stmt.close()
+        connection.close()
 
